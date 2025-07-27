@@ -74,4 +74,4 @@ $ ./xbps-src bootstrap-update
 ```
 
 ### thanks
-special thanks to the index-0 who I learned from his [librewolf](https://github.com/index-0/librewolf-void) repo and I still use it
+special thanks to index-0 who I learned from his [librewolf](https://github.com/index-0/librewolf-void) repo and I still use it
