@@ -1,0 +1,88 @@
+name: build
+
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      max-parallel: 1
+      matrix:
+        arch: [x86_64]
+    runs-on: ubuntu-22.04
+    env:
+      XBPS_TARGET_ARCH: ${{ matrix.arch }}
+
+    steps:
+      - name: free space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo apt install git
+
+      - name: checkout void-packages
+        uses: actions/checkout@v4
+        with:
+          repository: void-linux/void-packages
+          ref: master
+          path: void-packages
+
+      - name: checkout xbps
+        uses: actions/checkout@v4
+        with:
+          repository: void-linux/xbps
+          ref: 0.60.3
+          path: xbps
+
+      - name: build and install xbps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libarchive-dev
+          cd xbps
+          ./configure --enable-rpath --prefix=/opt/xbps/usr
+          make -j4
+          sudo make install clean
+
+      - name: copy paraview into srcpkgs
+        run: |
+          git clone https://github.com/muezabdalla/paraview-void.git paraview-void
+          cp -rv paraview-void/srcpkgs/paraview void-packages/srcpkgs
+          . paraview-void/srcpkgs/paraview/template
+          echo "RELEASE_NAME=$(echo "$version.$revision")" >> $GITHUB_ENV
+
+      - name: build
+        run: |
+          export PATH="/opt/xbps/usr/bin/:$PATH"
+          cd void-packages
+          ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
+          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} paraview
+
+      - name: sign
+        env:
+          XBPS_PASSPHRASE: ${{ secrets.SIGN_PASS }}
+        working-directory: void-packages/hostdir/binpkgs/
+        run: |
+          export PATH="/opt/xbps/usr/bin/:$PATH"
+          xbps-rindex -r $PWD
+          xbps-rindex -s --signedby "muezabdalla <muezabdalla777@gmail.com>" --privkey <(printf '%s' "${{ secrets.PRIV_KEY }}") $PWD
+          xbps-rindex -S --privkey <(printf '%s' "${{ secrets.PRIV_KEY }}") $PWD/*.xbps
+          xbps-rindex -c $PWD
+
+      - name: checksum
+        working-directory: void-packages/hostdir/binpkgs/
+        run: |
+          sha256sum $(echo paraview-*.${{ matrix.arch }}.xbps)
+          sha512sum $(echo paraview-*.${{ matrix.arch }}.xbps)
+
+      - name: release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.RELEASE_NAME }}
+          files: |
+            void-packages/hostdir/binpkgs/paraview*
+            void-packages/hostdir/binpkgs/*repodata
