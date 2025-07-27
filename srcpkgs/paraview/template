@@ -1,0 +1,15 @@
+# Template file for 'paraview'
+pkgname=paraview
+version=6.0.0RC3
+revision=1
+build_style=cmake
+configure_args="-DPARAVIEW_QT_VERSION=5 -DCMAKE_BUILD_TYPE=Release -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION=OFF -DPARAVIEW_USE_PYTHON=ON -DVTK_SMP_IMPLEMENTATION_TYPE=TBB"
+hostmakedepends="cmake"
+makedepends="base-devel libXt-devel qt5-tools-devel python3-devel python3-numpy libopenmpi qtchooser qt5-qmake qt5-plugin-odbc qt5-plugin-mysql qt5-plugin-pgsql qt5-plugin-sqlite qt5-plugin-tds qt5-svg-devel qt5-xmlpatterns tbb-devel openmpi-devel libboost_mpi vtk-devel libglvnd-devel"
+short_desc="the world’s leading open source post-processing visualization engine."
+maintainer="muez <muezabdalla777@gmail.com>"
+license="BSD-3-Clause"
+homepage="https://www.paraview.org/"
+distfiles="https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v6.0&type=source&os=Sources&downloadFile=ParaView-v6.0.0-RC3.tar.gz"
+checksum="d6955bb058f2f8d310fd59d7f7dd79780199fdcefd5c6b44e6474b44527c5f04"
+python_version=3
