@@ -1,7 +1,7 @@
 # Template file for 'paraview'
 pkgname=paraview
 version=6.0.0RC3
-revision=1
+revision=2
 build_style=cmake
 configure_args="-DPARAVIEW_QT_VERSION=5 -DCMAKE_BUILD_TYPE=Release -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION=OFF -DPARAVIEW_USE_PYTHON=ON -DVTK_SMP_IMPLEMENTATION_TYPE=TBB -DPARAVIEW_USE_EXTERNAL_VTK=ON"
 hostmakedepends="cmake"
