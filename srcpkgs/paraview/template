@@ -16,6 +16,7 @@ python_version=3
 
 pre_configure() {
 ls
+pwd
 mkdir masterdir-x86_64/opt/paraview/
 }
 
