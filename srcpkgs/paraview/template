@@ -21,5 +21,7 @@ vmkdir ../../opt/paraview/
 }
 
 post_install() {
-ln -s /opt/paraview/bin/paraview /usr/local/bin/
+ls
+pwd
+ln -s ../../opt/paraview/bin/paraview ../../usr/local/bin/
 }
