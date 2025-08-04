@@ -15,7 +15,7 @@ checksum="b89d83d0ad7123c1ce33cba2e6a610b646877ef88c6e96026ac4fe9612665978"
 python_version=3
 
 pre_configure() {
-mkdir /opt/paraview
+mkdir /opt/paraview/
 }
 
 post_install() {
