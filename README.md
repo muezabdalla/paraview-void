@@ -1,3 +1,6 @@
+> [!WARNING]  
+> this repo is still in testing(beta).
+
 # paraview package for void linux
 
 this is the unofficial repo for paraview for void linux
