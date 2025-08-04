@@ -13,3 +13,11 @@ homepage="https://www.paraview.org/"
 distfiles="https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v6.0&type=source&os=Sources&downloadFile=ParaView-v6.0.0.tar.gz"
 checksum="b89d83d0ad7123c1ce33cba2e6a610b646877ef88c6e96026ac4fe9612665978"
 python_version=3
+
+pre_configure() {
+mkdir /opt/paraview
+}
+
+post_install() {
+ln -s /opt/paraview/bin/paraview /usr/local/bin/
+}
