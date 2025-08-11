@@ -3,7 +3,7 @@ pkgname=paraview
 version=6.0.0
 revision=2
 build_style=cmake
-configure_args="-DCMAKE_INSTALL_PREFIX=/usr/local/ -DCMAKE_INSTALL_OLDINCLUDEDIR=/usr/local/include/ -DPARAVIEW_QT_VERSION=5 -DCMAKE_BUILD_TYPE=Release -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION=OFF -DPARAVIEW_USE_PYTHON=ON -DVTK_SMP_IMPLEMENTATION_TYPE=TBB"
+configure_args="-DCMAKE_INSTALL_PREFIX=/usr/lib/paraview -DPARAVIEW_QT_VERSION=5 -DCMAKE_BUILD_TYPE=Release -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION=OFF -DPARAVIEW_USE_PYTHON=ON -DVTK_SMP_IMPLEMENTATION_TYPE=TBB"
 hostmakedepends="cmake"
 makedepends="base-devel libXt-devel qt5-tools-devel python3-devel python3-numpy libopenmpi qtchooser qt5-qmake qt5-plugin-odbc qt5-plugin-mysql qt5-plugin-pgsql qt5-plugin-sqlite qt5-plugin-tds qt5-svg-devel qt5-xmlpatterns tbb-devel openmpi-devel libboost_mpi vtk-devel libglvnd-devel"
 short_desc="the world’s leading open source post-processing visualization engine."
@@ -20,8 +20,9 @@ python_version=3
 #vmkdir ../../opt/paraview/
 #}
 
-#post_install() {
-#ls
-#pwd
-#ln -s ../../opt/paraview/bin/paraview ../../usr/local/bin/
-#}
+post_install() {
+ls
+pwd
+vmkdir usr/bin
+ln -s /usr/lib/paraview/bin/paraview ${DESTDIR}/usr/bin/
+}
