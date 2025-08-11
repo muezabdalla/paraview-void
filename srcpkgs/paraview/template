@@ -8,7 +8,10 @@ configure_args="-DCMAKE_INSTALL_PREFIX=/usr/lib/paraview -DPARAVIEW_QT_VERSION=5
  -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION=OFF -DPARAVIEW_USE_PYTHON=ON
  -DVTK_SMP_IMPLEMENTATION_TYPE=TBB"
 hostmakedepends="cmake"
-makedepends="base-devel libXt-devel qt5-tools-devel python3-devel python3-numpy libopenmpi qtchooser qt5-qmake qt5-plugin-odbc qt5-plugin-mysql qt5-plugin-pgsql qt5-plugin-sqlite qt5-plugin-tds qt5-svg-devel qt5-xmlpatterns tbb-devel openmpi-devel libboost_mpi vtk-devel libglvnd-devel"
+makedepends="base-devel libXt-devel qt5-tools-devel python3-devel python3-numpy ffmpeg-devel
+ libopenmpi qtchooser qt5-qmake qt5-plugin-odbc qt5-plugin-mysql qt5-plugin-pgsql 
+ qt5-plugin-sqlite qt5-plugin-tds qt5-svg-devel qt5-xmlpatterns tbb-devel openmpi-devel
+ libboost_mpi vtk-devel libglvnd-devel"
 short_desc="the world’s leading open source post-processing visualization engine."
 maintainer="muez <muezabdalla777@gmail.com>"
 license="BSD-3-Clause"
