@@ -22,7 +22,9 @@ python_version=3
 
 post_install() {
 ls
+ls /
 pwd
+echo ${DESTDIR}
 vmkdir usr/bin
 ln -s /usr/lib/paraview/bin/paraview ${DESTDIR}/usr/bin/
 }
