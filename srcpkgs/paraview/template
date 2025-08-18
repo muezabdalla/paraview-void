@@ -12,7 +12,6 @@ makedepends="base-devel libXt-devel qt5-tools-devel python3-devel python3-numpy 
  libopenmpi qtchooser qt5-qmake qt5-plugin-odbc qt5-plugin-mysql qt5-plugin-pgsql 
  qt5-plugin-sqlite qt5-plugin-tds qt5-svg qt5-svg-devel qt5-xmlpatterns tbb-devel openmpi-devel
  libboost_mpi vtk-devel libglvnd-devel"
-depends="qt5-svg"
 short_desc="the world’s leading open source post-processing visualization engine."
 maintainer="muez <muezabdalla777@gmail.com>"
 license="BSD-3-Clause"
