@@ -28,7 +28,7 @@ python_version=3
 
 post_install() {
  vmkdir usr/bin
- for f in paraview paraview-config pvbatch pvdataserver pvrenderserver pvserver smTestDriver-pv6.0 sqlitebin-pv6.0 tokenize vtkParseJava-pv6.0 vtkProbeOpenGLVersion-pv6.0 vtkProcessXML-pv6.0 vtkWrapClientServer-pv6.0 vtkWrapHierarchy-pv6.0 vtkWrapJava-pv6.0 vtkWrapPython-pv6.0 vtkWrapPythonInit-pv6.0 vtkWrapPythonInit-pv6.0 vtkprotoc-pv6.0 vtkpython; do
+ for f in paraview paraview-config pvbatch pvdataserver pvrenderserver pvserver smTestDriver-pv6.0 sqlitebin-pv6.0 tokenize vtkParseJava-pv6.0 vtkProbeOpenGLVersion-pv6.0 vtkProcessXML-pv6.0 vtkWrapClientServer-pv6.0 vtkWrapHierarchy-pv6.0 vtkWrapJava-pv6.0 vtkWrapPython-pv6.0 vtkprotoc-pv6.0; do
   ln -s /usr/lib/paraview/bin/${f} ${DESTDIR}/usr/bin/${f}
  done
 }
